@@ -1,0 +1,5181 @@
+{
+ "versao": "2026.10.8",
+ "atualizadoEm": "2026-10-16",
+ "modelos": [
+  {
+   "id": "relacao-intima",
+   "grupo": "Lei Maria da Penha",
+   "nome": "Relação Íntima de Afeto",
+   "descricao": "[DO GITHUB DE TESTE 2026.10.8] Violência doméstica por cônjuge, companheiro(a), namorado(a) ou ex — inclusive em relações homoafetivas.",
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) investigado(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "vinculo",
+      "chips": true,
+      "rotulo": "Relacionamento (ex.: CÔNJUGE, NAMORADA, EX-COMPANHEIRO)",
+      "obrigatorio": true,
+      "sugestoes": {
+       "M": [
+        "CÔNJUGE",
+        "MARIDO",
+        "CONVIVENTE",
+        "COMPANHEIRO",
+        "NAMORADO",
+        "EX-CÔNJUGE",
+        "EX-MARIDO",
+        "EX-CONVIVENTE",
+        "EX-COMPANHEIRO",
+        "EX-NAMORADO"
+       ],
+       "F": [
+        "CÔNJUGE",
+        "ESPOSA",
+        "CONVIVENTE",
+        "COMPANHEIRA",
+        "NAMORADA",
+        "EX-CÔNJUGE",
+        "EX-ESPOSA",
+        "EX-CONVIVENTE",
+        "EX-COMPANHEIRA",
+        "EX-NAMORADA"
+       ]
+      }
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a)",
+      "obrigatorio": true
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA CONTRA SEU {vinculo}, SR. {investigado}"
+   },
+   "blocos": [
+    {
+     "titulo": "Medidas protetivas e registros anteriores",
+     "junto": true,
+     "perguntas": [
+      {
+       "id": "mpu_anterior",
+       "tipo": "escolha",
+       "rotulo": "Já solicitou medidas protetivas anteriormente?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE NÃO"
+        },
+        {
+         "rotulo": "Sim",
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM[, {d}]",
+         "detalhe": {
+          "rotulo": "Se retirou, informe o motivo (ex.: QUE REATARAM O RELACIONAMENTO / QUE SOLICITOU A REVOGAÇÃO PORQUE HAVIAM SE ENTENDIDO)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Confira se a MPU está EM VIGOR. Se estiver, não use este modelo: use o modelo de Descumprimento de MPU."
+      },
+      {
+       "id": "outros_registros",
+       "tipo": "escolha",
+       "rotulo": "Já realizou outros registros de ocorrência contra o(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca",
+         "texto": "QUE NUNCA REALIZOU OUTROS REGISTROS DE OCORRÊNCIA EM DESFAVOR DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Já realizou",
+         "texto": "QUE JÁ REALIZOU OUTROS REGISTROS DE OCORRÊNCIA EM DESFAVOR DO INVESTIGADO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O relacionamento",
+     "inicio": "PERGUNTADA SOBRE O RELACIONAMENTO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "convivencia",
+       "tipo": "escolha",
+       "rotulo": "Convivem ou conviveram?",
+       "opcoes": [
+        {
+         "rotulo": "Convivem",
+         "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Conviveram",
+         "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "separados",
+       "tipo": "texto",
+       "rotulo": "Há quanto tempo estão separados? (se aplicável)",
+       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false
+        }
+       ]
+      },
+      {
+       "id": "filhos_comum",
+       "tipo": "escolha",
+       "rotulo": "Possui filhos em comum?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_outro",
+       "tipo": "escolha",
+       "rotulo": "Possui filhos de outro relacionamento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vit_trabalho",
+       "tipo": "escolha",
+       "rotulo": "Trabalha?",
+       "opcoes": [
+        {
+         "rotulo": "Trabalha",
+         "texto": "QUE TRABALHA COMO {d}",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: DIARISTA, AUXILIAR DE COZINHA"
+         }
+        },
+        {
+         "rotulo": "Não trabalha",
+         "texto": "QUE NÃO TRABALHA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_dependencia",
+       "tipo": "escolha",
+       "rotulo": "Depende financeiramente do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Depende",
+         "texto": "QUE DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Não depende",
+         "texto": "QUE NÃO DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_beneficio",
+       "tipo": "escolha",
+       "rotulo": "Recebe benefício social?",
+       "opcoes": [
+        {
+         "rotulo": "Recebe",
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: BOLSA FAMÍLIA"
+         }
+        },
+        {
+         "rotulo": "Não recebe",
+         "texto": "QUE NÃO RECEBE BENEFÍCIO SOCIAL"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_imovel",
+       "tipo": "escolha",
+       "rotulo": "O imóvel em que reside é…",
+       "opcoes": [
+        {
+         "rotulo": "Próprio",
+         "texto": "QUE RESIDE EM IMÓVEL PRÓPRIO"
+        },
+        {
+         "rotulo": "Alugado",
+         "texto": "QUE RESIDE EM IMÓVEL ALUGADO"
+        },
+        {
+         "rotulo": "Cedido",
+         "texto": "QUE RESIDE EM IMÓVEL CEDIDO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "inv_trabalho",
+       "tipo": "texto",
+       "rotulo": "Função / profissão do(a) investigado(a)",
+       "texto": "QUE ELE TRABALHA COMO {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false,
+         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Se for profissional de segurança pública, informe — isso muda o pedido de MPU (porte/posse de arma)."
+      },
+      {
+       "id": "inv_alcool",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_preso",
+       "tipo": "escolha",
+       "rotulo": "Já esteve preso?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca esteve preso",
+         "texto": "QUE NUNCA ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Não sabe",
+         "texto": "QUE NÃO SABE SE ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Já esteve preso",
+         "texto": "QUE JÁ ESTEVE PRESO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_arma",
+       "tipo": "escolha",
+       "rotulo": "Já viu o(a) investigado(a) com arma de fogo?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca viu",
+         "texto": "QUE NUNCA O VIU COM ARMA DE FOGO"
+        },
+        {
+         "rotulo": "Já viu",
+         "texto": "QUE JÁ O VIU COM ARMA DE FOGO, {d}",
+         "detalhe": {
+          "rotulo": "Detalhes da situação",
+          "obrigatorio": true,
+          "longo": true
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Detalhe: quando viu, em que circunstância, onde estava a arma; se viu uma foto que não possui para apresentar, informe se o(a) investigado(a) estava na foto, se era só a arma, se a vítima reconheceu o lugar, e outras informações úteis para um pedido de mandado de busca.",
+       "alerta": "NUNCA registre apenas que o(a) investigado(a) \"possui fácil acesso a arma\", pois para esse campo é necessário ter informações certas sobre a existência de arma para a solicitação de Mandado de Busca pela Autoridade Policial. Atenção: se o(a) investigado(a) for profissional de segurança pública, lembre de solicitar, no pedido de MPU, a restrição de porte/posse."
+      }
+     ]
+    },
+    {
+     "titulo": "Medo do(a) investigado(a)",
+     "inicio": "PERGUNTADA SE TEM MEDO DO INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "medo",
+       "tipo": "escolha",
+       "rotulo": "Tem medo do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SIM"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_perfil",
+       "tipo": "escolha",
+       "rotulo": "Como é o(a) investigado(a) / a relação?",
+       "opcoes": [
+        {
+         "rotulo": "Hostil",
+         "texto": "QUE O INVESTIGADO É HOSTIL"
+        },
+        {
+         "rotulo": "Relação conturbada",
+         "texto": "QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+        },
+        {
+         "rotulo": "Hostil e relação conturbada",
+         "texto": "QUE O INVESTIGADO É HOSTIL E POSSUEM UMA RELAÇÃO CONTURBADA"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: NO DIA 05/10/2026, POR VOLTA DAS 21H, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A CHAMOU DE “…” E…"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva data, local, horário, motivo e dinâmica completa, usando as palavras da vítima sempre que possível, inclusive xingamentos."
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais no momento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE NO MOMENTO POSSUI LESÕES CORPORAIS, SENDO {d}; QUE ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE LESÕES CORPORAIS",
+         "detalhe": {
+          "rotulo": "Descreva brevemente as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ]
+      },
+      {
+       "id": "menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos ocorreram na presença de menores de idade?",
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "ajuda": "Marque apenas se ocorreu; se não for o caso, deixe sem marcar e a frase não entra no texto."
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Providências e encaminhamentos",
+     "perguntas": [
+      {
+       "id": "mpu_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja medidas protetivas de urgência?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SE SENTE EM RISCO EM RELAÇÃO AO INVESTIGADO E POR ISSO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+        },
+        {
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "representar",
+       "tipo": "escolha",
+       "rotulo": "Deseja representar criminalmente?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA REPRESENTAR CRIMINALMENTE"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA REPRESENTAR CRIMINALMENTE"
+        }
+       ]
+      },
+      {
+       "id": "casa_abrigo",
+       "tipo": "escolha",
+       "rotulo": "Deseja casa abrigo?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA CASA ABRIGO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA CASA ABRIGO"
+        }
+       ]
+      },
+      {
+       "id": "visita_pm",
+       "tipo": "escolha",
+       "rotulo": "Deseja visita tranquilizadora da Polícia Militar?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        }
+       ]
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "acao_privada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "demais-vinculos",
+   "grupo": "Lei Maria da Penha",
+   "nome": "Demais Vínculos Familiares ou Domésticos",
+   "descricao": "Violência doméstica ou familiar por mãe, irmã/irmão, tia/tio, cunhada/cunhado, filho(a) e demais vínculos.",
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) investigado(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "vinculo",
+      "chips": true,
+      "rotulo": "Vínculo com a declarante (ex.: MÃE, IRMÃ, TIO, CUNHADA)",
+      "obrigatorio": true,
+      "sugestoes": {
+       "M": [
+        "CÔNJUGE",
+        "EX-CÔNJUGE",
+        "PAI",
+        "PADRASTO",
+        "FILHO",
+        "ENTEADO",
+        "IRMÃO",
+        "TIO",
+        "PRIMO",
+        "AVÔ",
+        "NETO",
+        "SOBRINHO",
+        "GENRO",
+        "CUNHADO",
+        "SOGRO",
+        "EX-CUNHADO"
+       ],
+       "F": [
+        "CÔNJUGE",
+        "EX-CÔNJUGE",
+        "MÃE",
+        "MADRASTA",
+        "FILHA",
+        "ENTEADA",
+        "IRMÃ",
+        "TIA",
+        "PRIMA",
+        "AVÓ",
+        "NETA",
+        "SOBRINHA",
+        "NORA",
+        "CUNHADA",
+        "SOGRA",
+        "EX-CUNHADA"
+       ]
+      }
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a)",
+      "obrigatorio": true
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA CONTRA SEU {vinculo}, SR. {investigado}"
+   },
+   "blocos": [
+    {
+     "titulo": "Medidas protetivas e registros anteriores",
+     "junto": true,
+     "perguntas": [
+      {
+       "id": "mpu_anterior",
+       "tipo": "escolha",
+       "rotulo": "Já solicitou medidas protetivas anteriormente?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE NÃO"
+        },
+        {
+         "rotulo": "Sim",
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM[, {d}]",
+         "detalhe": {
+          "rotulo": "Se retirou, informe o motivo (ex.: QUE SOLICITOU A REVOGAÇÃO PORQUE HAVIAM SE ENTENDIDO)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Confira se a MPU está EM VIGOR. Se estiver, use o modelo de Descumprimento de MPU."
+      },
+      {
+       "id": "outros_registros",
+       "tipo": "escolha",
+       "rotulo": "Já realizou outros registros de ocorrência contra o(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca",
+         "texto": "QUE NUNCA REALIZOU OUTROS REGISTROS DE OCORRÊNCIA EM DESFAVOR DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Já realizou",
+         "texto": "QUE JÁ REALIZOU OUTROS REGISTROS DE OCORRÊNCIA EM DESFAVOR DO INVESTIGADO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O vínculo entre as partes",
+     "inicio": "PERGUNTADA SOBRE O VÍNCULO ENTRE AS PARTES, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vinculo_historico",
+       "tipo": "texto",
+       "rotulo": "Como é a relação entre as partes? (histórico da relação familiar ou doméstica)",
+       "texto": "QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: A DECLARANTE É IRMÃ DO INVESTIGADO; MORAM EM CASAS DIFERENTES NO MESMO TERRENO; DESDE 2023 HÁ BRIGAS CONSTANTES POR CAUSA DE DINHEIRO…"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva o histórico da relação: qual é o vínculo, há quanto tempo se conhecem ou convivem, como é o convívio no dia a dia, se há conflitos anteriores e como eles costumam acontecer. Use as palavras da declarante."
+      },
+      {
+       "id": "residencia",
+       "tipo": "escolha",
+       "rotulo": "Residem no mesmo local?",
+       "opcoes": [
+        {
+         "rotulo": "Não residem",
+         "texto": ", INFORMANDO QUE NÃO RESIDEM NO MESMO LOCAL"
+        },
+        {
+         "rotulo": "Residem",
+         "texto": ", INFORMANDO QUE RESIDEM NO MESMO LOCAL[ ({d})]",
+         "detalhe": {
+          "rotulo": "Especificar (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: NA MESMA CASA, EM CÔMODOS SEPARADOS"
+         }
+        },
+        {
+         "rotulo": "Residiam",
+         "texto": ", INFORMANDO QUE RESIDIAM NO MESMO LOCAL[ ({d})]",
+         "detalhe": {
+          "rotulo": "Especificar (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: ATÉ MARÇO DE 2025"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "episodios_anteriores",
+       "tipo": "escolha",
+       "rotulo": "Já houve episódios anteriores de violência ou ameaça?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
+          "obrigatorio": true,
+          "longo": true,
+          "ph": "Ex.: EM 2024 FOI AMEAÇADA VERBALMENTE; NÃO REGISTROU OCORRÊNCIA"
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vit_trabalho",
+       "tipo": "escolha",
+       "rotulo": "Trabalha?",
+       "opcoes": [
+        {
+         "rotulo": "Trabalha",
+         "texto": "QUE TRABALHA COMO {d}",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: DIARISTA, AUXILIAR DE COZINHA"
+         }
+        },
+        {
+         "rotulo": "Não trabalha",
+         "texto": "QUE NÃO TRABALHA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_dependencia",
+       "tipo": "escolha",
+       "rotulo": "Depende financeiramente do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Depende",
+         "texto": "QUE DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Não depende",
+         "texto": "QUE NÃO DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_beneficio",
+       "tipo": "escolha",
+       "rotulo": "Recebe benefício social?",
+       "opcoes": [
+        {
+         "rotulo": "Recebe",
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: BOLSA FAMÍLIA"
+         }
+        },
+        {
+         "rotulo": "Não recebe",
+         "texto": "QUE NÃO RECEBE BENEFÍCIO SOCIAL"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_imovel",
+       "tipo": "escolha",
+       "rotulo": "O imóvel em que reside é…",
+       "opcoes": [
+        {
+         "rotulo": "Próprio",
+         "texto": "QUE RESIDE EM IMÓVEL PRÓPRIO"
+        },
+        {
+         "rotulo": "Alugado",
+         "texto": "QUE RESIDE EM IMÓVEL ALUGADO"
+        },
+        {
+         "rotulo": "Cedido",
+         "texto": "QUE RESIDE EM IMÓVEL CEDIDO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "inv_trabalho",
+       "tipo": "texto",
+       "rotulo": "Função / profissão do(a) investigado(a)",
+       "texto": "QUE ELE TRABALHA COMO {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false,
+         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Se for profissional de segurança pública, informe — isso muda o pedido de MPU (porte/posse de arma)."
+      },
+      {
+       "id": "inv_alcool",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_preso",
+       "tipo": "escolha",
+       "rotulo": "Já esteve preso?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca esteve preso",
+         "texto": "QUE NUNCA ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Não sabe",
+         "texto": "QUE NÃO SABE SE ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Já esteve preso",
+         "texto": "QUE JÁ ESTEVE PRESO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_arma",
+       "tipo": "escolha",
+       "rotulo": "Já viu o(a) investigado(a) com arma de fogo?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca viu",
+         "texto": "QUE NUNCA O VIU COM ARMA DE FOGO"
+        },
+        {
+         "rotulo": "Já viu",
+         "texto": "QUE JÁ O VIU COM ARMA DE FOGO, {d}",
+         "detalhe": {
+          "rotulo": "Detalhes da situação",
+          "obrigatorio": true,
+          "longo": true
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Detalhe: quando viu, em que circunstância, onde estava a arma; se viu uma foto que não possui para apresentar, informe se o(a) investigado(a) estava na foto, se era só a arma, se a vítima reconheceu o lugar, e outras informações úteis para um pedido de mandado de busca.",
+       "alerta": "NUNCA registre apenas que o(a) investigado(a) \"possui fácil acesso a arma\", pois para esse campo é necessário ter informações certas sobre a existência de arma para a solicitação de Mandado de Busca pela Autoridade Policial. Atenção: se o(a) investigado(a) for profissional de segurança pública, lembre de solicitar, no pedido de MPU, a restrição de porte/posse."
+      }
+     ]
+    },
+    {
+     "titulo": "Medo do(a) investigado(a)",
+     "inicio": "PERGUNTADA SE TEM MEDO DO INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "medo",
+       "tipo": "escolha",
+       "rotulo": "Tem medo do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SIM"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_perfil",
+       "tipo": "escolha",
+       "rotulo": "Como é o(a) investigado(a) / a relação?",
+       "opcoes": [
+        {
+         "rotulo": "Hostil",
+         "texto": "QUE O INVESTIGADO É HOSTIL"
+        },
+        {
+         "rotulo": "Relação conturbada",
+         "texto": "QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+        },
+        {
+         "rotulo": "Hostil e relação conturbada",
+         "texto": "QUE O INVESTIGADO É HOSTIL E POSSUEM UMA RELAÇÃO CONTURBADA"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: NO DIA 05/10/2026, POR VOLTA DAS 21H, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A CHAMOU DE “…” E…"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva data, local, horário, motivo e dinâmica completa, usando as palavras da vítima sempre que possível, inclusive xingamentos."
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais no momento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE NO MOMENTO POSSUI LESÕES CORPORAIS, SENDO {d}; QUE ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE LESÕES CORPORAIS",
+         "detalhe": {
+          "rotulo": "Descreva brevemente as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ]
+      },
+      {
+       "id": "menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos ocorreram na presença de menores de idade?",
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "ajuda": "Marque apenas se ocorreu; se não for o caso, deixe sem marcar e a frase não entra no texto."
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Providências e encaminhamentos",
+     "perguntas": [
+      {
+       "id": "mpu_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja medidas protetivas de urgência?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SE SENTE EM RISCO EM RELAÇÃO AO INVESTIGADO E POR ISSO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+        },
+        {
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "representar",
+       "tipo": "escolha",
+       "rotulo": "Deseja representar criminalmente?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA REPRESENTAR CRIMINALMENTE"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA REPRESENTAR CRIMINALMENTE"
+        }
+       ]
+      },
+      {
+       "id": "casa_abrigo",
+       "tipo": "escolha",
+       "rotulo": "Deseja casa abrigo?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA CASA ABRIGO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA CASA ABRIGO"
+        }
+       ]
+      },
+      {
+       "id": "visita_pm",
+       "tipo": "escolha",
+       "rotulo": "Deseja visita tranquilizadora da Polícia Militar?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        }
+       ]
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "acao_privada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "descumprimento-intima",
+   "grupo": "Lei Maria da Penha",
+   "nome": "Descumprimento de MPU — Relação Íntima de Afeto",
+   "descricao": "Comunicação de descumprimento de medida protetiva contra parceiro(a) ou ex.",
+   "avisos": [
+    "Se as partes reataram ou mantiveram contato após o deferimento das MPUs, NÃO use este roteiro: deverá ser solicitada nova MPU (use o roteiro geral)."
+   ],
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) investigado(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "processo",
+      "rotulo": "Número do processo da MPU",
+      "obrigatorio": true
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a) (requerido)",
+      "obrigatorio": true
+     },
+     {
+      "id": "vinculo",
+      "chips": true,
+      "rotulo": "Relacionamento (ex.: CÔNJUGE, NAMORADA, EX-COMPANHEIRO)",
+      "obrigatorio": true,
+      "sugestoes": {
+       "M": [
+        "CÔNJUGE",
+        "MARIDO",
+        "CONVIVENTE",
+        "COMPANHEIRO",
+        "NAMORADO",
+        "EX-CÔNJUGE",
+        "EX-MARIDO",
+        "EX-CONVIVENTE",
+        "EX-COMPANHEIRO",
+        "EX-NAMORADO"
+       ],
+       "F": [
+        "CÔNJUGE",
+        "ESPOSA",
+        "CONVIVENTE",
+        "COMPANHEIRA",
+        "NAMORADA",
+        "EX-CÔNJUGE",
+        "EX-ESPOSA",
+        "EX-CONVIVENTE",
+        "EX-COMPANHEIRA",
+        "EX-NAMORADA"
+       ]
+      }
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA COMUNICAR O DESCUMPRIMENTO DE MEDIDA PROTETIVA DE URGÊNCIA, REFERENTE AO PROCESSO Nº {processo}, TENDO COMO REQUERIDO O SR. {investigado}, SEU {vinculo}"
+   },
+   "blocos": [
+    {
+     "titulo": "Contato após a MPU",
+     "junto": true,
+     "perguntas": [
+      {
+       "id": "sem_contato",
+       "tipo": "escolha",
+       "rotulo": "Reataram o relacionamento ou mantiveram contato após o deferimento das MPUs?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE REATARAM O RELACIONAMENTO OU MANTIVERAM CONTATO APÓS O DEFERIMENTO DAS MPU’S INFORMOU QUE NÃO"
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se as partes reataram ou mantiveram contato após o deferimento das MPUs, NÃO use este roteiro: deverá ser solicitada nova MPU (use o roteiro geral)."
+      }
+     ]
+    },
+    {
+     "titulo": "O relacionamento",
+     "inicio": "PERGUNTADA SOBRE O RELACIONAMENTO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "convivencia",
+       "tipo": "escolha",
+       "rotulo": "Convivem ou conviveram?",
+       "opcoes": [
+        {
+         "rotulo": "Convivem",
+         "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Conviveram",
+         "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "separados",
+       "tipo": "texto",
+       "rotulo": "Há quanto tempo estão separados? (se aplicável)",
+       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false
+        }
+       ]
+      },
+      {
+       "id": "filhos_comum",
+       "tipo": "escolha",
+       "rotulo": "Possui filhos em comum?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_outro",
+       "tipo": "escolha",
+       "rotulo": "Possui filhos de outro relacionamento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vit_trabalho",
+       "tipo": "escolha",
+       "rotulo": "Trabalha?",
+       "opcoes": [
+        {
+         "rotulo": "Trabalha",
+         "texto": "QUE TRABALHA COMO {d}",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: DIARISTA, AUXILIAR DE COZINHA"
+         }
+        },
+        {
+         "rotulo": "Não trabalha",
+         "texto": "QUE NÃO TRABALHA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_dependencia",
+       "tipo": "escolha",
+       "rotulo": "Depende financeiramente do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Depende",
+         "texto": "QUE DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Não depende",
+         "texto": "QUE NÃO DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_beneficio",
+       "tipo": "escolha",
+       "rotulo": "Recebe benefício social?",
+       "opcoes": [
+        {
+         "rotulo": "Recebe",
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: BOLSA FAMÍLIA"
+         }
+        },
+        {
+         "rotulo": "Não recebe",
+         "texto": "QUE NÃO RECEBE BENEFÍCIO SOCIAL"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_imovel",
+       "tipo": "escolha",
+       "rotulo": "O imóvel em que reside é…",
+       "opcoes": [
+        {
+         "rotulo": "Próprio",
+         "texto": "QUE RESIDE EM IMÓVEL PRÓPRIO"
+        },
+        {
+         "rotulo": "Alugado",
+         "texto": "QUE RESIDE EM IMÓVEL ALUGADO"
+        },
+        {
+         "rotulo": "Cedido",
+         "texto": "QUE RESIDE EM IMÓVEL CEDIDO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "inv_trabalho",
+       "tipo": "texto",
+       "rotulo": "Função / profissão do(a) investigado(a)",
+       "texto": "QUE ELE TRABALHA COMO {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false,
+         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Se for profissional de segurança pública, informe — isso muda o pedido de MPU (porte/posse de arma)."
+      },
+      {
+       "id": "inv_alcool",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_preso",
+       "tipo": "escolha",
+       "rotulo": "Já esteve preso?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca esteve preso",
+         "texto": "QUE NUNCA ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Não sabe",
+         "texto": "QUE NÃO SABE SE ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Já esteve preso",
+         "texto": "QUE JÁ ESTEVE PRESO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_arma",
+       "tipo": "escolha",
+       "rotulo": "Já viu o(a) investigado(a) com arma de fogo?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca viu",
+         "texto": "QUE NUNCA O VIU COM ARMA DE FOGO"
+        },
+        {
+         "rotulo": "Já viu",
+         "texto": "QUE JÁ O VIU COM ARMA DE FOGO, {d}",
+         "detalhe": {
+          "rotulo": "Detalhes da situação",
+          "obrigatorio": true,
+          "longo": true
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Detalhe: quando viu, em que circunstância, onde estava a arma; se viu uma foto que não possui para apresentar, informe se o(a) investigado(a) estava na foto, se era só a arma, se a vítima reconheceu o lugar, e outras informações úteis para um pedido de mandado de busca.",
+       "alerta": "NUNCA registre apenas que o(a) investigado(a) \"possui fácil acesso a arma\", pois para esse campo é necessário ter informações certas sobre a existência de arma para a solicitação de Mandado de Busca pela Autoridade Policial. Atenção: se o(a) investigado(a) for profissional de segurança pública, lembre de solicitar, no pedido de MPU, a restrição de porte/posse."
+      }
+     ]
+    },
+    {
+     "titulo": "Medo do(a) investigado(a)",
+     "inicio": "PERGUNTADA SE TEM MEDO DO INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "medo",
+       "tipo": "escolha",
+       "rotulo": "Tem medo do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SIM"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_perfil",
+       "tipo": "escolha",
+       "rotulo": "Como é o(a) investigado(a) / a relação?",
+       "opcoes": [
+        {
+         "rotulo": "Hostil",
+         "texto": "QUE O INVESTIGADO É HOSTIL"
+        },
+        {
+         "rotulo": "Relação conturbada",
+         "texto": "QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+        },
+        {
+         "rotulo": "Hostil e relação conturbada",
+         "texto": "QUE O INVESTIGADO É HOSTIL E POSSUEM UMA RELAÇÃO CONTURBADA"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: NO DIA 05/10/2026, POR VOLTA DAS 21H, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A CHAMOU DE “…” E…"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva data, local, horário, motivo e dinâmica completa, usando as palavras da vítima sempre que possível, inclusive xingamentos."
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais no momento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE NO MOMENTO POSSUI LESÕES CORPORAIS, SENDO {d}; QUE ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE LESÕES CORPORAIS",
+         "detalhe": {
+          "rotulo": "Descreva brevemente as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ]
+      },
+      {
+       "id": "menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos ocorreram na presença de menores de idade?",
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "ajuda": "Marque apenas se ocorreu; se não for o caso, deixe sem marcar e a frase não entra no texto."
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Providências e encaminhamentos",
+     "perguntas": [
+      {
+       "id": "representar",
+       "tipo": "escolha",
+       "rotulo": "Deseja representar criminalmente?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA REPRESENTAR CRIMINALMENTE"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA REPRESENTAR CRIMINALMENTE"
+        }
+       ]
+      },
+      {
+       "id": "casa_abrigo",
+       "tipo": "escolha",
+       "rotulo": "Deseja casa abrigo?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA CASA ABRIGO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA CASA ABRIGO"
+        }
+       ]
+      },
+      {
+       "id": "visita_pm",
+       "tipo": "escolha",
+       "rotulo": "Visita tranquilizadora da Polícia Militar",
+       "opcoes": [
+        {
+         "rotulo": "Já está inserida",
+         "texto": "QUE ESTÁ INSERIDA NA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        },
+        {
+         "rotulo": "Não está inserida e deseja receber",
+         "texto": "QUE NÃO ESTÁ INSERIDA E DESEJA RECEBER VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        },
+        {
+         "rotulo": "Não está inserida e não deseja",
+         "texto": "QUE NÃO ESTÁ INSERIDA E NÃO DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        }
+       ]
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "acao_privada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "descumprimento-familiar",
+   "grupo": "Lei Maria da Penha",
+   "nome": "Descumprimento de MPU — Demais Vínculos Familiares",
+   "descricao": "Comunicação de descumprimento de medida protetiva em vínculo familiar ou doméstico.",
+   "avisos": [
+    "Se as partes mantiveram contato após o deferimento das MPUs, NÃO use este roteiro: deverá ser solicitada nova MPU (use o roteiro geral)."
+   ],
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) investigado(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "processo",
+      "rotulo": "Número do processo da MPU",
+      "obrigatorio": true
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a) (requerido)",
+      "obrigatorio": true
+     },
+     {
+      "id": "vinculo",
+      "chips": true,
+      "rotulo": "Vínculo com a declarante (ex.: MÃE, IRMÃ, TIO, CUNHADA)",
+      "obrigatorio": true,
+      "sugestoes": {
+       "M": [
+        "CÔNJUGE",
+        "EX-CÔNJUGE",
+        "PAI",
+        "PADRASTO",
+        "FILHO",
+        "ENTEADO",
+        "IRMÃO",
+        "TIO",
+        "PRIMO",
+        "AVÔ",
+        "NETO",
+        "SOBRINHO",
+        "GENRO",
+        "CUNHADO",
+        "SOGRO",
+        "EX-CUNHADO"
+       ],
+       "F": [
+        "CÔNJUGE",
+        "EX-CÔNJUGE",
+        "MÃE",
+        "MADRASTA",
+        "FILHA",
+        "ENTEADA",
+        "IRMÃ",
+        "TIA",
+        "PRIMA",
+        "AVÓ",
+        "NETA",
+        "SOBRINHA",
+        "NORA",
+        "CUNHADA",
+        "SOGRA",
+        "EX-CUNHADA"
+       ]
+      }
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA COMUNICAR O DESCUMPRIMENTO DE MEDIDA PROTETIVA DE URGÊNCIA, REFERENTE AO PROCESSO Nº {processo}, TENDO COMO REQUERIDO O SR. {investigado}, SEU {vinculo}"
+   },
+   "blocos": [
+    {
+     "titulo": "Contato após a MPU",
+     "junto": true,
+     "perguntas": [
+      {
+       "id": "sem_contato",
+       "tipo": "escolha",
+       "rotulo": "Mantiveram contato após o deferimento das MPUs?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE MANTIVERAM CONTATO APÓS O DEFERIMENTO DAS MPU’S INFORMOU QUE NÃO"
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se as partes mantiveram contato após o deferimento das MPUs, NÃO use este roteiro: deverá ser solicitada nova MPU (use o roteiro geral)."
+      }
+     ]
+    },
+    {
+     "titulo": "O vínculo entre as partes",
+     "inicio": "PERGUNTADA SOBRE O VÍNCULO ENTRE AS PARTES, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vinculo_historico",
+       "tipo": "texto",
+       "rotulo": "Como é a relação entre as partes? (histórico da relação familiar ou doméstica)",
+       "texto": "QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: A DECLARANTE É IRMÃ DO INVESTIGADO; MORAM EM CASAS DIFERENTES NO MESMO TERRENO; DESDE 2023 HÁ BRIGAS CONSTANTES POR CAUSA DE DINHEIRO…"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva o histórico da relação: qual é o vínculo, há quanto tempo se conhecem ou convivem, como é o convívio no dia a dia, se há conflitos anteriores e como eles costumam acontecer. Use as palavras da declarante."
+      },
+      {
+       "id": "residencia",
+       "tipo": "escolha",
+       "rotulo": "Residem no mesmo local?",
+       "opcoes": [
+        {
+         "rotulo": "Não residem",
+         "texto": ", INFORMANDO QUE NÃO RESIDEM NO MESMO LOCAL"
+        },
+        {
+         "rotulo": "Residem",
+         "texto": ", INFORMANDO QUE RESIDEM NO MESMO LOCAL[ ({d})]",
+         "detalhe": {
+          "rotulo": "Especificar (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: NA MESMA CASA, EM CÔMODOS SEPARADOS"
+         }
+        },
+        {
+         "rotulo": "Residiam",
+         "texto": ", INFORMANDO QUE RESIDIAM NO MESMO LOCAL[ ({d})]",
+         "detalhe": {
+          "rotulo": "Especificar (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: ATÉ MARÇO DE 2025"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "episodios_anteriores",
+       "tipo": "escolha",
+       "rotulo": "Já houve episódios anteriores de violência ou ameaça?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
+          "obrigatorio": true,
+          "longo": true,
+          "ph": "Ex.: EM 2024 FOI AMEAÇADA VERBALMENTE; NÃO REGISTROU OCORRÊNCIA"
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vit_trabalho",
+       "tipo": "escolha",
+       "rotulo": "Trabalha?",
+       "opcoes": [
+        {
+         "rotulo": "Trabalha",
+         "texto": "QUE TRABALHA COMO {d}",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: DIARISTA, AUXILIAR DE COZINHA"
+         }
+        },
+        {
+         "rotulo": "Não trabalha",
+         "texto": "QUE NÃO TRABALHA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_dependencia",
+       "tipo": "escolha",
+       "rotulo": "Depende financeiramente do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Depende",
+         "texto": "QUE DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Não depende",
+         "texto": "QUE NÃO DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_beneficio",
+       "tipo": "escolha",
+       "rotulo": "Recebe benefício social?",
+       "opcoes": [
+        {
+         "rotulo": "Recebe",
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: BOLSA FAMÍLIA"
+         }
+        },
+        {
+         "rotulo": "Não recebe",
+         "texto": "QUE NÃO RECEBE BENEFÍCIO SOCIAL"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_imovel",
+       "tipo": "escolha",
+       "rotulo": "O imóvel em que reside é…",
+       "opcoes": [
+        {
+         "rotulo": "Próprio",
+         "texto": "QUE RESIDE EM IMÓVEL PRÓPRIO"
+        },
+        {
+         "rotulo": "Alugado",
+         "texto": "QUE RESIDE EM IMÓVEL ALUGADO"
+        },
+        {
+         "rotulo": "Cedido",
+         "texto": "QUE RESIDE EM IMÓVEL CEDIDO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "inv_trabalho",
+       "tipo": "texto",
+       "rotulo": "Função / profissão do(a) investigado(a)",
+       "texto": "QUE ELE TRABALHA COMO {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false,
+         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Se for profissional de segurança pública, informe — isso muda o pedido de MPU (porte/posse de arma)."
+      },
+      {
+       "id": "inv_alcool",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_preso",
+       "tipo": "escolha",
+       "rotulo": "Já esteve preso?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca esteve preso",
+         "texto": "QUE NUNCA ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Não sabe",
+         "texto": "QUE NÃO SABE SE ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Já esteve preso",
+         "texto": "QUE JÁ ESTEVE PRESO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_arma",
+       "tipo": "escolha",
+       "rotulo": "Já viu o(a) investigado(a) com arma de fogo?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca viu",
+         "texto": "QUE NUNCA O VIU COM ARMA DE FOGO"
+        },
+        {
+         "rotulo": "Já viu",
+         "texto": "QUE JÁ O VIU COM ARMA DE FOGO, {d}",
+         "detalhe": {
+          "rotulo": "Detalhes da situação",
+          "obrigatorio": true,
+          "longo": true
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Detalhe: quando viu, em que circunstância, onde estava a arma; se viu uma foto que não possui para apresentar, informe se o(a) investigado(a) estava na foto, se era só a arma, se a vítima reconheceu o lugar, e outras informações úteis para um pedido de mandado de busca.",
+       "alerta": "NUNCA registre apenas que o(a) investigado(a) \"possui fácil acesso a arma\", pois para esse campo é necessário ter informações certas sobre a existência de arma para a solicitação de Mandado de Busca pela Autoridade Policial. Atenção: se o(a) investigado(a) for profissional de segurança pública, lembre de solicitar, no pedido de MPU, a restrição de porte/posse."
+      }
+     ]
+    },
+    {
+     "titulo": "Medo do(a) investigado(a)",
+     "inicio": "PERGUNTADA SE TEM MEDO DO INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "medo",
+       "tipo": "escolha",
+       "rotulo": "Tem medo do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SIM"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_perfil",
+       "tipo": "escolha",
+       "rotulo": "Como é o(a) investigado(a) / a relação?",
+       "opcoes": [
+        {
+         "rotulo": "Hostil",
+         "texto": "QUE O INVESTIGADO É HOSTIL"
+        },
+        {
+         "rotulo": "Relação conturbada",
+         "texto": "QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+        },
+        {
+         "rotulo": "Hostil e relação conturbada",
+         "texto": "QUE O INVESTIGADO É HOSTIL E POSSUEM UMA RELAÇÃO CONTURBADA"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: NO DIA 05/10/2026, POR VOLTA DAS 21H, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A CHAMOU DE “…” E…"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva data, local, horário, motivo e dinâmica completa, usando as palavras da vítima sempre que possível, inclusive xingamentos."
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais no momento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE NO MOMENTO POSSUI LESÕES CORPORAIS, SENDO {d}; QUE ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE LESÕES CORPORAIS",
+         "detalhe": {
+          "rotulo": "Descreva brevemente as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ]
+      },
+      {
+       "id": "menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos ocorreram na presença de menores de idade?",
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "ajuda": "Marque apenas se ocorreu; se não for o caso, deixe sem marcar e a frase não entra no texto."
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Providências e encaminhamentos",
+     "perguntas": [
+      {
+       "id": "representar",
+       "tipo": "escolha",
+       "rotulo": "Deseja representar criminalmente?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA REPRESENTAR CRIMINALMENTE"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA REPRESENTAR CRIMINALMENTE"
+        }
+       ]
+      },
+      {
+       "id": "casa_abrigo",
+       "tipo": "escolha",
+       "rotulo": "Deseja casa abrigo?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA CASA ABRIGO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA CASA ABRIGO"
+        }
+       ]
+      },
+      {
+       "id": "visita_pm",
+       "tipo": "escolha",
+       "rotulo": "Visita tranquilizadora da Polícia Militar",
+       "opcoes": [
+        {
+         "rotulo": "Já está inserida",
+         "texto": "QUE ESTÁ INSERIDA NA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        },
+        {
+         "rotulo": "Não está inserida e deseja receber",
+         "texto": "QUE NÃO ESTÁ INSERIDA E DESEJA RECEBER VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        },
+        {
+         "rotulo": "Não está inserida e não deseja",
+         "texto": "QUE NÃO ESTÁ INSERIDA E NÃO DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        }
+       ]
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "acao_privada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "estupro-intimo",
+   "grupo": "Violência sexual",
+   "nome": "Estupro — Relação Íntima de Afeto (Lei Maria da Penha)",
+   "descricao": "Estupro praticado por cônjuge, companheiro(a), namorado(a) ou ex.",
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) investigado(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "vinculo",
+      "chips": true,
+      "rotulo": "Relacionamento (ex.: CÔNJUGE, NAMORADA, EX-COMPANHEIRO)",
+      "obrigatorio": true,
+      "sugestoes": {
+       "M": [
+        "CÔNJUGE",
+        "MARIDO",
+        "CONVIVENTE",
+        "COMPANHEIRO",
+        "NAMORADO",
+        "EX-CÔNJUGE",
+        "EX-MARIDO",
+        "EX-CONVIVENTE",
+        "EX-COMPANHEIRO",
+        "EX-NAMORADO"
+       ],
+       "F": [
+        "CÔNJUGE",
+        "ESPOSA",
+        "CONVIVENTE",
+        "COMPANHEIRA",
+        "NAMORADA",
+        "EX-CÔNJUGE",
+        "EX-ESPOSA",
+        "EX-CONVIVENTE",
+        "EX-COMPANHEIRA",
+        "EX-NAMORADA"
+       ]
+      }
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a)",
+      "obrigatorio": true
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA CONTRA SEU {vinculo}, SR. {investigado}"
+   },
+   "blocos": [
+    {
+     "titulo": "Medidas protetivas e registros anteriores",
+     "junto": true,
+     "perguntas": [
+      {
+       "id": "mpu_anterior",
+       "tipo": "escolha",
+       "rotulo": "Já solicitou medidas protetivas anteriormente?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE NÃO"
+        },
+        {
+         "rotulo": "Sim",
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM[, {d}]",
+         "detalhe": {
+          "rotulo": "Se retirou, informe o motivo (ex.: QUE REATARAM O RELACIONAMENTO)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Confira se a MPU está EM VIGOR. Se estiver, use o modelo de Descumprimento de MPU."
+      },
+      {
+       "id": "outros_registros",
+       "tipo": "escolha",
+       "rotulo": "Já realizou outros registros de ocorrência contra o(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca",
+         "texto": "QUE NUNCA REALIZOU OUTROS REGISTROS DE OCORRÊNCIA EM DESFAVOR DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Já realizou",
+         "texto": "QUE JÁ REALIZOU OUTROS REGISTROS DE OCORRÊNCIA EM DESFAVOR DO INVESTIGADO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O relacionamento",
+     "inicio": "PERGUNTADA SOBRE O RELACIONAMENTO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "convivencia",
+       "tipo": "escolha",
+       "rotulo": "Convivem ou conviveram?",
+       "opcoes": [
+        {
+         "rotulo": "Convivem",
+         "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Conviveram",
+         "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "separados",
+       "tipo": "texto",
+       "rotulo": "Há quanto tempo estão separados? (se aplicável)",
+       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false
+        }
+       ]
+      },
+      {
+       "id": "filhos_comum",
+       "tipo": "escolha",
+       "rotulo": "Possui filhos em comum?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_outro",
+       "tipo": "escolha",
+       "rotulo": "Possui filhos de outro relacionamento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vit_trabalho",
+       "tipo": "escolha",
+       "rotulo": "Trabalha?",
+       "opcoes": [
+        {
+         "rotulo": "Trabalha",
+         "texto": "QUE TRABALHA COMO {d}",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: DIARISTA, AUXILIAR DE COZINHA"
+         }
+        },
+        {
+         "rotulo": "Não trabalha",
+         "texto": "QUE NÃO TRABALHA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_dependencia",
+       "tipo": "escolha",
+       "rotulo": "Depende financeiramente do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Depende",
+         "texto": "QUE DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Não depende",
+         "texto": "QUE NÃO DEPENDE FINANCEIRAMENTE DO INVESTIGADO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_beneficio",
+       "tipo": "escolha",
+       "rotulo": "Recebe benefício social?",
+       "opcoes": [
+        {
+         "rotulo": "Recebe",
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: BOLSA FAMÍLIA"
+         }
+        },
+        {
+         "rotulo": "Não recebe",
+         "texto": "QUE NÃO RECEBE BENEFÍCIO SOCIAL"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_imovel",
+       "tipo": "escolha",
+       "rotulo": "O imóvel em que reside é…",
+       "opcoes": [
+        {
+         "rotulo": "Próprio",
+         "texto": "QUE RESIDE EM IMÓVEL PRÓPRIO"
+        },
+        {
+         "rotulo": "Alugado",
+         "texto": "QUE RESIDE EM IMÓVEL ALUGADO"
+        },
+        {
+         "rotulo": "Cedido",
+         "texto": "QUE RESIDE EM IMÓVEL CEDIDO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "inv_trabalho",
+       "tipo": "texto",
+       "rotulo": "Função / profissão do(a) investigado(a)",
+       "texto": "QUE ELE TRABALHA COMO {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false,
+         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Se for profissional de segurança pública, informe — isso muda o pedido de MPU (porte/posse de arma)."
+      },
+      {
+       "id": "inv_alcool",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais e a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_preso",
+       "tipo": "escolha",
+       "rotulo": "Já esteve preso?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca esteve preso",
+         "texto": "QUE NUNCA ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Não sabe",
+         "texto": "QUE NÃO SABE SE ESTEVE PRESO"
+        },
+        {
+         "rotulo": "Já esteve preso",
+         "texto": "QUE JÁ ESTEVE PRESO[, {d}]",
+         "detalhe": {
+          "rotulo": "Detalhes (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_arma",
+       "tipo": "escolha",
+       "rotulo": "Já viu o(a) investigado(a) com arma de fogo?",
+       "opcoes": [
+        {
+         "rotulo": "Nunca viu",
+         "texto": "QUE NUNCA O VIU COM ARMA DE FOGO"
+        },
+        {
+         "rotulo": "Já viu",
+         "texto": "QUE JÁ O VIU COM ARMA DE FOGO, {d}",
+         "detalhe": {
+          "rotulo": "Detalhes da situação",
+          "obrigatorio": true,
+          "longo": true
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Detalhe: quando viu, em que circunstância, onde estava a arma; se viu uma foto que não possui para apresentar, informe se o(a) investigado(a) estava na foto, se era só a arma, se a vítima reconheceu o lugar, e outras informações úteis para um pedido de mandado de busca.",
+       "alerta": "NUNCA registre apenas que o(a) investigado(a) \"possui fácil acesso a arma\", pois para esse campo é necessário ter informações certas sobre a existência de arma para a solicitação de Mandado de Busca pela Autoridade Policial. Atenção: se o(a) investigado(a) for profissional de segurança pública, lembre de solicitar, no pedido de MPU, a restrição de porte/posse."
+      }
+     ]
+    },
+    {
+     "titulo": "Medo do(a) investigado(a)",
+     "inicio": "PERGUNTADA SE TEM MEDO DO INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "medo",
+       "tipo": "escolha",
+       "rotulo": "Tem medo do(a) investigado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SIM"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_perfil",
+       "tipo": "escolha",
+       "rotulo": "Como é o(a) investigado(a) / a relação?",
+       "opcoes": [
+        {
+         "rotulo": "Hostil",
+         "texto": "QUE O INVESTIGADO É HOSTIL"
+        },
+        {
+         "rotulo": "Relação conturbada",
+         "texto": "QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+        },
+        {
+         "rotulo": "Hostil e relação conturbada",
+         "texto": "QUE O INVESTIGADO É HOSTIL E POSSUEM UMA RELAÇÃO CONTURBADA"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: NA DATA DE 20/01/2026, POR VOLTA DAS 22H, ESTAVA EM UM BAR COM O INVESTIGADO QUANDO ELE PROPÔS QUE FOSSEM PARA SUA RESIDÊNCIA; NO LOCAL O INVESTIGADO MANTEVE RELAÇÃO SEXUAL SEM SEU CONSENTIMENTO"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva data, local, horário e a dinâmica completa dos fatos, usando as palavras da vítima sempre que possível, inclusive xingamentos."
+      },
+      {
+       "id": "meio",
+       "tipo": "texto",
+       "rotulo": "Meio empregado pelo autor(a)",
+       "texto": "QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: O INVESTIGADO USOU DE FORÇA FÍSICA, RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, QUE O INVESTIGADO A XINGOU DE \"PUTA\" E \"SAFADA\""
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Precisa constar o meio: violência, ameaça, força física, intimidação ou outro. Escreva a frase completa. Se a vítima cedeu após pedidos insistentes, sem violência ou grave ameaça, diga isso."
+      },
+      {
+       "id": "pratica",
+       "tipo": "caixas",
+       "rotulo": "Prática sexual ocorrida",
+       "texto": "QUE A PRÁTICA SEXUAL CONSISTIU EM {lista}",
+       "itens": [
+        {
+         "rotulo": "Penetração vaginal",
+         "texto": "PENETRAÇÃO VAGINAL"
+        },
+        {
+         "rotulo": "Penetração anal",
+         "texto": "PENETRAÇÃO ANAL"
+        },
+        {
+         "rotulo": "Sexo oral",
+         "texto": "SEXO ORAL"
+        },
+        {
+         "rotulo": "Outros atos libidinosos",
+         "texto": "OUTROS ATOS LIBIDINOSOS, A SABER: {d}",
+         "detalhe": {
+          "rotulo": "Quais (ex.: APALPOU, LAMBEU, TOCOU PARTES ÍNTIMAS, FICOU NU EM FRENTE À VÍTIMA, USOU BRINQUEDOS SEXUAIS, MASTURBOU-SE OU EJACULOU EM PARTE DO CORPO)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "consentimento",
+       "tipo": "escolha",
+       "rotulo": "Consentimento",
+       "opcoes": [
+        {
+         "rotulo": "Sem consentimento",
+         "texto": "A DECLARANTE AFIRMA QUE A PRÁTICA DE ATO SEXUAL OCORREU SEM SEU CONSENTIMENTO"
+        },
+        {
+         "rotulo": "Cedeu após pedidos insistentes",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Se a vítima cedeu ao ato após pedidos insistentes, a afirmação de ausência de consentimento NÃO entra no texto."
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais no momento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE NO MOMENTO POSSUI LESÕES CORPORAIS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Descreva brevemente as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ]
+      },
+      {
+       "id": "efeito_subst",
+       "tipo": "escolha",
+       "rotulo": "Estava sob efeito de álcool ou outra substância?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE NÃO"
+        },
+        {
+         "rotulo": "Álcool",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL"
+        },
+        {
+         "rotulo": "Outra substância",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qual substância",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY, COCAÍNA, ANFETAMINAS"
+         }
+        },
+        {
+         "rotulo": "Álcool e outra substância",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL E {d}",
+         "detalhe": {
+          "rotulo": "Qual substância",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY, COCAÍNA, ANFETAMINAS"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "desconfia_bebida",
+       "tipo": "escolha",
+       "rotulo": "Desconfia de substância em sua bebida?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESCONFIA DE SUBSTÂNCIA EM SUA BEBIDA, {d}",
+         "detalhe": {
+          "rotulo": "Por que desconfia",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PORQUE SE SENTIU TONTA, POIS PERDEU A CONSCIÊNCIA MESMO TENDO INGERIDO APENAS UM GOLE DA BEBIDA"
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESCONFIA DE SUBSTÂNCIA EM SUA BEBIDA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "consciencia",
+       "tipo": "escolha",
+       "rotulo": "Estava acordada durante o ato?",
+       "opcoes": [
+        {
+         "rotulo": "Acordada",
+         "texto": "QUE ESTAVA ACORDADA DURANTE O ATO"
+        },
+        {
+         "rotulo": "Desacordada",
+         "texto": "QUE ESTAVA DESACORDADA DURANTE O ATO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "banho",
+       "tipo": "escolha",
+       "rotulo": "Após os fatos, tomou banho?",
+       "opcoes": [
+        {
+         "rotulo": "Tomou banho",
+         "texto": "QUE APÓS OS FATOS TOMOU BANHO"
+        },
+        {
+         "rotulo": "Não tomou banho",
+         "texto": "QUE APÓS OS FATOS NÃO TOMOU BANHO"
+        }
+       ],
+       "ajuda": "Incluir apenas se o estupro for recente e se aplicar."
+      },
+      {
+       "id": "roupa",
+       "tipo": "escolha",
+       "rotulo": "Após os fatos, trocou de roupa?",
+       "opcoes": [
+        {
+         "rotulo": "Trocou de roupa",
+         "texto": "QUE APÓS OS FATOS TROCOU DE ROUPA"
+        },
+        {
+         "rotulo": "Não trocou de roupa",
+         "texto": "QUE APÓS OS FATOS NÃO TROCOU DE ROUPA"
+        }
+       ],
+       "ajuda": "Incluir apenas se o estupro for recente e se aplicar."
+      },
+      {
+       "id": "atend_medico",
+       "tipo": "escolha",
+       "rotulo": "Procurou atendimento médico?",
+       "opcoes": [
+        {
+         "rotulo": "Procurou",
+         "texto": "QUE PROCUROU ATENDIMENTO MÉDICO[, NA UNIDADE {d}]",
+         "detalhe": {
+          "rotulo": "Unidade de saúde",
+          "obrigatorio": false,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não procurou",
+         "texto": "QUE NÃO PROCUROU ATENDIMENTO MÉDICO"
+        }
+       ]
+      },
+      {
+       "id": "menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos ocorreram na presença de menores de idade?",
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "ajuda": "Marque apenas se ocorreu; se não for o caso, deixe sem marcar e a frase não entra no texto."
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou se foi alguém para quem confidenciou depois dos fatos",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Providências e encaminhamentos",
+     "perguntas": [
+      {
+       "id": "mpu_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja medidas protetivas de urgência?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE SE SENTE EM RISCO EM RELAÇÃO AO INVESTIGADO E POR ISSO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+        },
+        {
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "representar",
+       "tipo": "escolha",
+       "rotulo": "Deseja representar criminalmente?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA REPRESENTAR CRIMINALMENTE"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA REPRESENTAR CRIMINALMENTE"
+        }
+       ]
+      },
+      {
+       "id": "casa_abrigo",
+       "tipo": "escolha",
+       "rotulo": "Deseja casa abrigo?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA CASA ABRIGO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA CASA ABRIGO"
+        }
+       ]
+      },
+      {
+       "id": "visita_pm",
+       "tipo": "escolha",
+       "rotulo": "Deseja visita tranquilizadora da Polícia Militar?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
+        }
+       ]
+      },
+      {
+       "id": "exame",
+       "tipo": "caixas",
+       "rotulo": "Exames periciais orientados",
+       "texto": "QUE FOI ORIENTADA E ENCAMINHADA PARA EXAME PERICIAL, SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Conjunção carnal",
+         "texto": "CONJUNÇÃO CARNAL"
+        },
+        {
+         "rotulo": "Coito anal",
+         "texto": "COITO ANAL"
+        },
+        {
+         "rotulo": "Lesões corporais",
+         "texto": "LESÕES CORPORAIS"
+        },
+        {
+         "rotulo": "Toxicológico",
+         "texto": "TOXICOLÓGICO"
+        },
+        {
+         "rotulo": "Outros",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual exame",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: COLETA DE MATERIAL GENÉTICO"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "profilaxia",
+       "tipo": "escolha",
+       "rotulo": "Tempo do fato para o atendimento em saúde",
+       "opcoes": [
+        {
+         "rotulo": "Fato ocorrido há menos de 72 horas",
+         "texto": "QUE, EM RAZÃO DOS FATOS TEREM OCORRIDO HÁ MENOS DE 72 HORAS, FOI ORIENTADA SOBRE A IMPORTÂNCIA DE BUSCAR COM URGÊNCIA ATENDIMENTO NO SERVIÇO DE REFERÊNCIA PARA REALIZAÇÃO DE PROFILAXIA PELO SUS, ANTES QUE O PRAZO FINALIZE"
+        },
+        {
+         "rotulo": "Fato ocorrido há mais de 72 horas",
+         "texto": "QUE, EM RAZÃO DOS FATOS TEREM OCORRIDO HÁ MAIS DE 72 HORAS, FOI ORIENTADA SOBRE A IMPORTÂNCIA DE BUSCAR ATENDIMENTO EM SAÚDE NO SUS PARA REALIZAÇÃO DE EXAMES E DEMAIS CONDUTAS CABÍVEIS, SENDO INFORMADA DO SERVIÇO DE REFERÊNCIA"
+        }
+       ],
+       "alerta": "Responda esta pergunta apenas quando os fatos envolverem penetração ou exposição a sêmen."
+      },
+      {
+       "id": "acao_privada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "estupro-sem-vinculo",
+   "grupo": "Violência sexual",
+   "nome": "Estupro — Sem vínculo doméstico ou familiar",
+   "descricao": "Estupro por autor(a) conhecido sem vínculo doméstico, ou desconhecido.",
+   "avisos": [
+    "Se no relato a vítima trouxer situação de risco em relação ao investigado, é possível solicitar medidas protetivas de urgência."
+   ],
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) autor(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) autor(a) (ou HOMEM/MULHER DESCONHECIDO/A)",
+      "obrigatorio": true,
+      "sugestoes": {
+       "M": [
+        "HOMEM DESCONHECIDO"
+       ],
+       "F": [
+        "MULHER DESCONHECIDA"
+       ]
+      }
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA EM DESFAVOR DE {investigado}"
+   },
+   "blocos": [
+    {
+     "titulo": "O(A) autor(a)",
+     "inicio": "PERGUNTADA SOBRE O AUTOR, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "autor",
+       "tipo": "escolha",
+       "rotulo": "Conhece o(a) autor(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Autor(a) desconhecido(a)",
+         "texto": "QUE NÃO CONHECE O AUTOR[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
+         "detalhe": {
+          "rotulo": "Características de que a vítima se recorda (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: HOMEM PARDO, APARENTANDO 30 ANOS, CERCA DE 1,80 M, CABELO RASPADO, TATUAGEM NO BRAÇO DIREITO"
+         }
+        },
+        {
+         "rotulo": "Conhece o(a) autor(a)",
+         "texto": "QUE {d}",
+         "detalhe": {
+          "rotulo": "De onde e há quanto tempo o(a) conhece",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: O AUTOR É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+         }
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "deficiencia",
+       "tipo": "escolha",
+       "rotulo": "Possui deficiência?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI DEFICIÊNCIA[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Especificar",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI DEFICIÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "gestante",
+       "tipo": "escolha",
+       "rotulo": "Estava gestante na data dos fatos?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE ESTAVA GESTANTE NA DATA DOS FATOS"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência e se estava sob uso na data dos fatos (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais, frequência e se estava sob uso na data dos fatos",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: NA DATA DE 20/01/2026, POR VOLTA DAS 22H, ESTAVA EM UM BAR COM O INVESTIGADO QUANDO ELE PROPÔS QUE FOSSEM PARA SUA RESIDÊNCIA; NO LOCAL O AUTOR MANTEVE RELAÇÃO SEXUAL SEM SEU CONSENTIMENTO"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva data, local, horário e a dinâmica completa dos fatos, usando as palavras da vítima sempre que possível, inclusive xingamentos."
+      },
+      {
+       "id": "meio",
+       "tipo": "texto",
+       "rotulo": "Meio empregado pelo autor(a)",
+       "texto": "QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: O AUTOR USOU DE FORÇA FÍSICA, RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, QUE O AUTOR A XINGOU DE \"PUTA\" E \"SAFADA\""
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Precisa constar o meio: violência, ameaça, força física, intimidação ou outro. Escreva a frase completa. Se a vítima cedeu após pedidos insistentes, sem violência ou grave ameaça, diga isso."
+      },
+      {
+       "id": "pratica",
+       "tipo": "caixas",
+       "rotulo": "Prática sexual ocorrida",
+       "texto": "QUE A PRÁTICA SEXUAL CONSISTIU EM {lista}",
+       "itens": [
+        {
+         "rotulo": "Penetração vaginal",
+         "texto": "PENETRAÇÃO VAGINAL"
+        },
+        {
+         "rotulo": "Penetração anal",
+         "texto": "PENETRAÇÃO ANAL"
+        },
+        {
+         "rotulo": "Sexo oral",
+         "texto": "SEXO ORAL"
+        },
+        {
+         "rotulo": "Outros atos libidinosos",
+         "texto": "OUTROS ATOS LIBIDINOSOS, A SABER: {d}",
+         "detalhe": {
+          "rotulo": "Quais (ex.: APALPOU, LAMBEU, TOCOU PARTES ÍNTIMAS, FICOU NU EM FRENTE À VÍTIMA, USOU BRINQUEDOS SEXUAIS, MASTURBOU-SE OU EJACULOU EM PARTE DO CORPO)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "consentimento",
+       "tipo": "escolha",
+       "rotulo": "Consentimento",
+       "opcoes": [
+        {
+         "rotulo": "Sem consentimento",
+         "texto": "A DECLARANTE AFIRMA QUE A PRÁTICA DE ATO SEXUAL OCORREU SEM SEU CONSENTIMENTO"
+        },
+        {
+         "rotulo": "Cedeu após pedidos insistentes",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Se a vítima cedeu ao ato após pedidos insistentes, a afirmação de ausência de consentimento NÃO entra no texto."
+      },
+      {
+       "id": "efeito_subst",
+       "tipo": "escolha",
+       "rotulo": "Estava sob efeito de álcool ou outra substância?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE NÃO"
+        },
+        {
+         "rotulo": "Álcool",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL"
+        },
+        {
+         "rotulo": "Outra substância",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qual substância",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY, COCAÍNA, ANFETAMINAS"
+         }
+        },
+        {
+         "rotulo": "Álcool e outra substância",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL E {d}",
+         "detalhe": {
+          "rotulo": "Qual substância",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY, COCAÍNA, ANFETAMINAS"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "desconfia_bebida",
+       "tipo": "escolha",
+       "rotulo": "Desconfia de substância em sua bebida?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESCONFIA DE SUBSTÂNCIA EM SUA BEBIDA, {d}",
+         "detalhe": {
+          "rotulo": "Por que desconfia",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PORQUE SE SENTIU TONTA, POIS PERDEU A CONSCIÊNCIA MESMO TENDO INGERIDO APENAS UM GOLE DA BEBIDA"
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESCONFIA DE SUBSTÂNCIA EM SUA BEBIDA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "consciencia",
+       "tipo": "escolha",
+       "rotulo": "Estava acordada durante o ato?",
+       "opcoes": [
+        {
+         "rotulo": "Acordada",
+         "texto": "QUE ESTAVA ACORDADA DURANTE O ATO"
+        },
+        {
+         "rotulo": "Desacordada",
+         "texto": "QUE ESTAVA DESACORDADA DURANTE O ATO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "banho",
+       "tipo": "escolha",
+       "rotulo": "Após os fatos, tomou banho?",
+       "opcoes": [
+        {
+         "rotulo": "Tomou banho",
+         "texto": "QUE APÓS OS FATOS TOMOU BANHO"
+        },
+        {
+         "rotulo": "Não tomou banho",
+         "texto": "QUE APÓS OS FATOS NÃO TOMOU BANHO"
+        }
+       ],
+       "ajuda": "Incluir apenas se o estupro for recente e se aplicar."
+      },
+      {
+       "id": "roupa",
+       "tipo": "escolha",
+       "rotulo": "Após os fatos, trocou de roupa?",
+       "opcoes": [
+        {
+         "rotulo": "Trocou de roupa",
+         "texto": "QUE APÓS OS FATOS TROCOU DE ROUPA"
+        },
+        {
+         "rotulo": "Não trocou de roupa",
+         "texto": "QUE APÓS OS FATOS NÃO TROCOU DE ROUPA"
+        }
+       ],
+       "ajuda": "Incluir apenas se o estupro for recente e se aplicar."
+      },
+      {
+       "id": "atend_medico",
+       "tipo": "escolha",
+       "rotulo": "Procurou atendimento médico?",
+       "opcoes": [
+        {
+         "rotulo": "Procurou",
+         "texto": "QUE PROCUROU ATENDIMENTO MÉDICO[, NA UNIDADE {d}]",
+         "detalhe": {
+          "rotulo": "Unidade de saúde",
+          "obrigatorio": false,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não procurou",
+         "texto": "QUE NÃO PROCUROU ATENDIMENTO MÉDICO"
+        }
+       ]
+      },
+      {
+       "id": "menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos ocorreram na presença de menores de idade?",
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "ajuda": "Marque apenas se ocorreu; se não for o caso, deixe sem marcar e a frase não entra no texto."
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou se foi alguém para quem confidenciou depois dos fatos",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais no momento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE NO MOMENTO POSSUI LESÕES CORPORAIS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Descreva brevemente as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Providências e encaminhamentos",
+     "perguntas": [
+      {
+       "id": "exame",
+       "tipo": "caixas",
+       "rotulo": "Exames periciais orientados",
+       "texto": "QUE FOI ORIENTADA E ENCAMINHADA PARA EXAME PERICIAL, SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Conjunção carnal",
+         "texto": "CONJUNÇÃO CARNAL"
+        },
+        {
+         "rotulo": "Coito anal",
+         "texto": "COITO ANAL"
+        },
+        {
+         "rotulo": "Lesões corporais",
+         "texto": "LESÕES CORPORAIS"
+        },
+        {
+         "rotulo": "Toxicológico",
+         "texto": "TOXICOLÓGICO"
+        },
+        {
+         "rotulo": "Outros",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual exame",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: COLETA DE MATERIAL GENÉTICO"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "retrato",
+       "tipo": "escolha",
+       "rotulo": "Consegue realizar retrato falado?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE ESTÁ SENDO ENCAMINHADA PARA ATENDIMENTO PERICIAL PARA REALIZAÇÃO DE RETRATO FALADO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE CONSEGUE REALIZAR RETRATO FALADO, INFORMOU QUE NÃO"
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Autor(a) desconhecido(a)"
+       },
+       "naTelaDepoisDe": "autor"
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "profilaxia",
+       "tipo": "escolha",
+       "rotulo": "Tempo do fato para o atendimento em saúde",
+       "opcoes": [
+        {
+         "rotulo": "Fato ocorrido há menos de 72 horas",
+         "texto": "QUE, EM RAZÃO DOS FATOS TEREM OCORRIDO HÁ MENOS DE 72 HORAS, FOI ORIENTADA SOBRE A IMPORTÂNCIA DE BUSCAR COM URGÊNCIA ATENDIMENTO NO SERVIÇO DE REFERÊNCIA PARA REALIZAÇÃO DE PROFILAXIA PELO SUS, ANTES QUE O PRAZO FINALIZE"
+        },
+        {
+         "rotulo": "Fato ocorrido há mais de 72 horas",
+         "texto": "QUE, EM RAZÃO DOS FATOS TEREM OCORRIDO HÁ MAIS DE 72 HORAS, FOI ORIENTADA SOBRE A IMPORTÂNCIA DE BUSCAR ATENDIMENTO EM SAÚDE NO SUS PARA REALIZAÇÃO DE EXAMES E DEMAIS CONDUTAS CABÍVEIS, SENDO INFORMADA DO SERVIÇO DE REFERÊNCIA"
+        }
+       ],
+       "alerta": "Responda esta pergunta apenas quando os fatos envolverem penetração ou exposição a sêmen."
+      },
+      {
+       "id": "orientada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA SOBRE OS PROCEDIMENTOS LEGAIS CABÍVEIS"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "assedio-sexual",
+   "grupo": "Violência sexual",
+   "nome": "Assédio Sexual",
+   "descricao": "Assédio sexual com prevalecimento de posição hierárquica.",
+   "avisos": [
+    "Se no relato a vítima trouxer situação de risco em relação ao investigado, é possível solicitar medidas protetivas de urgência."
+   ],
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) investigado(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a)",
+      "obrigatorio": true
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA CONTRA O SR. {investigado}"
+   },
+   "blocos": [
+    {
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vinculo_prof",
+       "tipo": "texto",
+       "rotulo": "Vínculo profissional e hierárquico entre as partes",
+       "texto": "QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "vit_funcao",
+       "tipo": "texto",
+       "rotulo": "Função que exerce",
+       "texto": "QUE TRABALHA COMO {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "deficiencia",
+       "tipo": "escolha",
+       "rotulo": "Possui deficiência?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI DEFICIÊNCIA[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Especificar",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI DEFICIÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "gestante",
+       "tipo": "escolha",
+       "rotulo": "Estava gestante na data dos fatos?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE ESTAVA GESTANTE NA DATA DOS FATOS"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": NO DIA {data}, NO LOCAL {local}, O INVESTIGADO VALENDO-SE DE SUA POSIÇÃO HIERÁRQUICA, {conduta}",
+       "campos": [
+        {
+         "id": "data",
+         "rotulo": "Data",
+         "obrigatorio": true
+        },
+        {
+         "id": "local",
+         "rotulo": "Local (empresa, órgão ou ambiente)",
+         "obrigatorio": true
+        },
+        {
+         "id": "conduta",
+         "rotulo": "Conduta praticada",
+         "longo": true,
+         "obrigatorio": true
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Precisa haver posição funcional SUPERIOR do(a) investigado(a) para caracterizar o assédio.",
+       "ajuda": "Descreva detalhadamente a conduta: falas, pedidos, convites insistentes, ameaças, constrangimentos ou promessas relacionadas a favorecimento sexual."
+      },
+      {
+       "id": "sentimento",
+       "tipo": "escolha",
+       "rotulo": "A declarante sentiu-se…",
+       "opcoes": [
+        {
+         "rotulo": "Constrangida",
+         "texto": "QUE A DECLARANTE SENTIU-SE CONSTRANGIDA COM A CONDUTA"
+        },
+        {
+         "rotulo": "Intimidada",
+         "texto": "QUE A DECLARANTE SENTIU-SE INTIMIDADA COM A CONDUTA"
+        },
+        {
+         "rotulo": "Constrangida e intimidada",
+         "texto": "QUE A DECLARANTE SENTIU-SE CONSTRANGIDA E INTIMIDADA COM A CONDUTA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "reiteracao",
+       "tipo": "escolha",
+       "rotulo": "Os fatos ocorreram…",
+       "opcoes": [
+        {
+         "rotulo": "Uma vez",
+         "texto": "QUE OS FATOS OCORRERAM UMA VEZ"
+        },
+        {
+         "rotulo": "De forma reiterada",
+         "texto": "QUE OS FATOS OCORRERAM DE FORMA REITERADA[, {d}]",
+         "detalhe": {
+          "rotulo": "Especificar (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, especificando se presenciou os fatos ou tomou conhecimento posteriormente (se criança/adolescente, constar a idade atual)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS, MENSAGENS, E-MAILS, ÁUDIOS, PRINTS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS, MENSAGENS, E-MAILS, ÁUDIOS, PRINTS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      },
+      {
+       "id": "prejuizo",
+       "tipo": "escolha",
+       "rotulo": "Teve prejuízo profissional?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE TEVE PREJUÍZO PROFISSIONAL, RESPONDEU QUE NÃO"
+        },
+        {
+         "rotulo": "Sim",
+         "texto": "PERGUNTADA SE TEVE PREJUÍZO PROFISSIONAL, RESPONDEU QUE SIM, {d}",
+         "detalhe": {
+          "rotulo": "Especificar",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "orientada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA SOBRE OS PROCEDIMENTOS LEGAIS CABÍVEIS"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "importunacao-sexual",
+   "grupo": "Violência sexual",
+   "nome": "Importunação Sexual",
+   "descricao": "Ato libidinoso ou obsceno praticado contra a vítima sem consentimento.",
+   "avisos": [
+    "Se no relato a vítima trouxer situação de risco em relação ao investigado, é possível solicitar medidas protetivas de urgência."
+   ],
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante (vítima)",
+      "obrigatorio": true
+     },
+     {
+      "id": "genero",
+      "tipo": "escolha",
+      "rotulo": "O(A) autor(a) é…",
+      "obrigatorio": true,
+      "opcoes": [
+       {
+        "valor": "M",
+        "rotulo": "Homem"
+       },
+       {
+        "valor": "F",
+        "rotulo": "Mulher"
+       }
+      ]
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a) (se tiver)",
+      "obrigatorio": false
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA[ CONTRA O SR. {investigado}]"
+   },
+   "blocos": [
+    {
+     "titulo": "O(A) autor(a)",
+     "inicio": "PERGUNTADA SOBRE O AUTOR, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "autor",
+       "tipo": "escolha",
+       "rotulo": "Conhece o(a) autor(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Autor(a) desconhecido(a)",
+         "texto": "QUE NÃO CONHECE O AUTOR[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
+         "detalhe": {
+          "rotulo": "Características de que a vítima se recorda (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: HOMEM PARDO, APARENTANDO 30 ANOS, CERCA DE 1,80 M, CABELO RASPADO, TATUAGEM NO BRAÇO DIREITO"
+         }
+        },
+        {
+         "rotulo": "Conhece o(a) autor(a)",
+         "texto": "QUE {d}",
+         "detalhe": {
+          "rotulo": "De onde e há quanto tempo o(a) conhece",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: O AUTOR É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+         }
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Situação da declarante",
+     "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "deficiencia",
+       "tipo": "escolha",
+       "rotulo": "Possui deficiência?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI DEFICIÊNCIA[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Especificar",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI DEFICIÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "gestante",
+       "tipo": "escolha",
+       "rotulo": "Estava gestante na data dos fatos?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE ESTAVA GESTANTE NA DATA DOS FATOS"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de medicamentos psiquiátricos?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: FLUOXETINA"
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de álcool?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "detalhe": {
+          "rotulo": "Frequência e se estava sob uso na data dos fatos (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas",
+       "tipo": "escolha",
+       "rotulo": "Faz uso de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Quais, frequência e se estava sob uso na data dos fatos",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": NO DIA {data}, POR VOLTA DAS {hora}, NO LOCAL {local}, O AUTOR {conduta}",
+       "campos": [
+        {
+         "id": "data",
+         "rotulo": "Data",
+         "obrigatorio": true
+        },
+        {
+         "id": "hora",
+         "rotulo": "Horário aproximado",
+         "obrigatorio": true
+        },
+        {
+         "id": "local",
+         "rotulo": "Local (endereço ou referência)",
+         "obrigatorio": true
+        },
+        {
+         "id": "conduta",
+         "rotulo": "Conduta praticada",
+         "longo": true,
+         "obrigatorio": true
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva detalhadamente a conduta, com as palavras da vítima sempre que possível. Pontos de atenção: especificar se tocou a vítima, beijou, esfregou o corpo, mostrou partes íntimas, se masturbou direcionando-se à vítima, entre outros."
+      },
+      {
+       "id": "ato",
+       "tipo": "escolha",
+       "rotulo": "Natureza do ato",
+       "opcoes": [
+        {
+         "rotulo": "Libidinoso",
+         "texto": "QUE AFIRMA QUE O AUTOR PRATICOU O ATO LIBIDINOSO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+        },
+        {
+         "rotulo": "Obsceno",
+         "texto": "QUE AFIRMA QUE O AUTOR PRATICOU O ATO OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+        },
+        {
+         "rotulo": "Libidinoso e obsceno",
+         "texto": "QUE AFIRMA QUE O AUTOR PRATICOU O ATO LIBIDINOSO E OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "apos",
+       "tipo": "texto",
+       "rotulo": "O que o(a) autor(a) fez após os fatos?",
+       "texto": "QUE APÓS OS FATOS O AUTOR {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false
+        }
+       ],
+       "ajuda": "Ex.: fugiu, permaneceu no local, continuou acompanhando a vítima — se aplicável."
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais no momento?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE NO MOMENTO POSSUI LESÕES CORPORAIS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Descreva brevemente as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ]
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, especificando se presenciou os fatos ou tomou conhecimento posteriormente (se criança/adolescente, constar a idade atual)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "provas_digitais",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS, FOTOS, VÍDEOS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DAS MENSAGENS ENVIADAS PELO INVESTIGADO E ÁUDIO CONTENDO XINGAMENTOS"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS, FOTOS, VÍDEOS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS"
+        }
+       ],
+       "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      },
+      {
+       "id": "psicossocial",
+       "tipo": "escolha",
+       "rotulo": "Deseja atendimento psicossocial?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        }
+       ]
+      },
+      {
+       "id": "retrato",
+       "tipo": "escolha",
+       "rotulo": "Consegue realizar retrato falado?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE ESTÁ SENDO ENCAMINHADA PARA ATENDIMENTO PERICIAL PARA REALIZAÇÃO DE RETRATO FALADO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE CONSEGUE REALIZAR RETRATO FALADO, INFORMOU QUE NÃO"
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Autor(a) desconhecido(a)"
+       },
+       "naTelaDepoisDe": "autor"
+      },
+      {
+       "id": "orientada",
+       "tipo": "fixo",
+       "texto": "QUE NESTE ATO FOI ORIENTADA SOBRE OS PROCEDIMENTOS LEGAIS CABÍVEIS"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "mpu-fora-atribuicao",
+   "grupo": "Fora da atribuição da DEAM",
+   "nome": "MPU para situações fora da atribuição da DEAM",
+   "descricao": "Pedido de medida protetiva (Tema 1.412/STF) em fatos fora da atribuição da DEAM.",
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome da declarante",
+      "obrigatorio": true
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome do/a autor(a)/a",
+      "obrigatorio": true
+     },
+     {
+      "id": "vinculo",
+      "chips": true,
+      "rotulo": "Vínculo / relação existente (com SEU ou SUA)",
+      "obrigatorio": true,
+      "sugestoes": [
+       "SEU VIZINHO",
+       "SUA VIZINHA",
+       "SEU COLEGA DE TRABALHO",
+       "SUA COLEGA DE TRABALHO",
+       "SEU CONHECIDO",
+       "SUA CONHECIDA"
+      ]
+     }
+    ],
+    "texto": "QUE, EM DECORRÊNCIA DA RECENTE DECISÃO DO SUPREMO TRIBUNAL FEDERAL, PROFERIDA NO JULGAMENTO DO TEMA 1.412 DE REPERCUSSÃO GERAL, QUE RECONHECE A POSSIBILIDADE DE APLICAÇÃO DAS MEDIDAS PROTETIVAS DE URGÊNCIA PREVISTAS NA LEI Nº 11.340/2006 ÀS FORMAS DE VIOLÊNCIA CONTRA A MULHER BASEADAS NO GÊNERO, INDEPENDENTEMENTE DE SUA OCORRÊNCIA NO ÂMBITO DOMÉSTICO, FAMILIAR OU EM RELAÇÃO ÍNTIMA DE AFETO, A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA PARA REGISTRAR OCORRÊNCIA E SOLICITAR MEDIDAS PROTETIVAS DE URGÊNCIA EM DESFAVOR DE {investigado}, {vinculo}"
+   },
+   "blocos": [
+    {
+     "titulo": "Motivação do conflito",
+     "perguntas": [
+      {
+       "id": "motivacao",
+       "tipo": "texto",
+       "rotulo": "Motivação do conflito",
+       "texto": "PERGUNTADA SOBRE A MOTIVAÇÃO DO CONFLITO, RESPONDEU QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Registre a resposta da declarante. NÃO é necessário avaliar nem informar à declarante se tem relação com gênero ou não."
+      }
+     ]
+    },
+    {
+     "titulo": "Os fatos",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": "PERGUNTADA SOBRE OS FATOS, RELATOU: NA DATA DE {data}, POR VOLTA DE {hora}, {descricao}",
+       "campos": [
+        {
+         "id": "data",
+         "rotulo": "Data",
+         "obrigatorio": true
+        },
+        {
+         "id": "hora",
+         "rotulo": "Horário aproximado",
+         "obrigatorio": true
+        },
+        {
+         "id": "descricao",
+         "rotulo": "Descrição objetiva e cronológica dos fatos",
+         "longo": true,
+         "obrigatorio": true
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Indique as condutas praticadas pelo/a autor(a)/a: ameaças, perseguições, agressões, constrangimentos ou outras formas de violência."
+      },
+      {
+       "id": "lesao",
+       "tipo": "escolha",
+       "rotulo": "Apresenta alguma lesão corporal?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "PERGUNTADA SE APRESENTA ALGUMA LESÃO CORPORAL, RESPONDEU QUE NÃO"
+        },
+        {
+         "rotulo": "Sim",
+         "texto": "PERGUNTADA SE APRESENTA ALGUMA LESÃO CORPORAL, RESPONDEU QUE {d}",
+         "detalhe": {
+          "rotulo": "Registre as lesões mencionadas",
+          "obrigatorio": true,
+          "longo": false
+         }
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se houver lesão, encaminhar ao DML."
+      },
+      {
+       "id": "interesse",
+       "tipo": "fixo",
+       "texto": "A DECLARANTE MANIFESTA INTERESSE NA CONCESSÃO DE MEDIDAS PROTETIVAS DE URGÊNCIA"
+      },
+      {
+       "id": "esclarecimento",
+       "tipo": "fixo",
+       "texto": "APÓS O RELATO, FOI ESCLARECIDA À DECLARANTE QUE, EMBORA A POSSIBILIDADE DE CONCESSÃO DE MEDIDAS PROTETIVAS DE URGÊNCIA NÃO ESTEJA MAIS RESTRITA ÀS SITUAÇÕES DE VIOLÊNCIA OCORRIDAS NO ÂMBITO DOMÉSTICO, FAMILIAR OU EM RELAÇÃO ÍNTIMA DE AFETO, OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO INVESTIGATIVA DESTA UNIDADE ESPECIALIZADA, RAZÃO PELA QUAL A OCORRÊNCIA SERÁ ENCAMINHADA À UNIDADE POLICIAL COMPETENTE PARA A APURAÇÃO DOS FATOS, SEM PREJUÍZO DA APRECIAÇÃO DO PEDIDO DE MEDIDA PROTETIVA DE URGÊNCIA PELO JUÍZO COMPETENTE"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  },
+  {
+   "id": "fora-atribuicao",
+   "grupo": "Fora da atribuição da DEAM",
+   "nome": "Situações fora da atribuição da DEAM",
+   "descricao": "Registro e encaminhamento à delegacia competente.",
+   "abertura": {
+    "campos": [
+     {
+      "id": "vitima",
+      "rotulo": "Nome completo da declarante",
+      "obrigatorio": true
+     },
+     {
+      "id": "investigado",
+      "rotulo": "Nome completo do(a) investigado(a)",
+      "obrigatorio": true
+     },
+     {
+      "id": "vinculo",
+      "chips": true,
+      "rotulo": "Vínculo com o(a) investigado(a) — escreva com SEU/SUA, ou informe a falta de vínculo",
+      "obrigatorio": false,
+      "sugestoes": [
+       "SEU VIZINHO",
+       "SUA VIZINHA",
+       "SEU CONHECIDO",
+       "SUA CONHECIDA",
+       "SEU AMIGO",
+       "SUA AMIGA",
+       "SUA EX-ESPOSA DO ATUAL COMPANHEIRO",
+       "PESSOA DESCONHECIDA QUE NÃO MANTÉM NENHUM VÍNCULO"
+      ]
+     }
+    ],
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA EM DESFAVOR DE {investigado}[, {vinculo}]"
+   },
+   "blocos": [
+    {
+     "titulo": "Os fatos",
+     "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fatos",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos",
+       "texto": ": {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva de forma breve, mas objetiva, o fato, informando data, local, horário aproximado e dinâmica dos fatos."
+      },
+      {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ]
+      },
+      {
+       "id": "lesoes",
+       "tipo": "escolha",
+       "rotulo": "Possui lesões corporais?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI LESÕES CORPORAIS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Descreva as lesões",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI LESÕES CORPORAIS"
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se houver lesão, encaminhar ao DML."
+      },
+      {
+       "id": "provas",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas?",
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Especifique, inclusive provas digitais (opcional)",
+          "obrigatorio": false,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "esclarecimento",
+       "tipo": "fixo",
+       "texto": "QUE, APÓS O RELATO, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL"
+      }
+     ]
+    }
+   ],
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+  }
+ ]
+}
