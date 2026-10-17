@@ -1,12 +1,12 @@
 {
- "versao": "2026.10.8",
+ "versao": "2026.10.9",
  "atualizadoEm": "2026-10-16",
  "modelos": [
   {
    "id": "relacao-intima",
    "grupo": "Lei Maria da Penha",
    "nome": "Relação Íntima de Afeto",
-   "descricao": "[DO GITHUB DE TESTE 2026.10.8] Violência doméstica por cônjuge, companheiro(a), namorado(a) ou ex — inclusive em relações homoafetivas.",
+   "descricao": "Violência doméstica por cônjuge, companheiro(a), namorado(a) ou ex — inclusive em relações homoafetivas.",
    "abertura": {
     "campos": [
      {
@@ -703,7 +703,7 @@
      ]
     }
    ],
-   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+   "fechamento_apagado": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
   },
   {
    "id": "demais-vinculos",
